@@ -101,3 +101,190 @@ for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker c
 ```
 
 
+
+
+## Install bash completion for the suggestion in kubernetes
+
+```
+
+apt-get install bash-completion
+
+echo $SHELL
+
+
+kubectl completion bash
+
+kubectl completion bash > kubecom.sh
+
+cat kubecom.sh 
+
+cp kubecom.sh /home/user/.kube/
+
+source $HOME/.kube/kubecom.sh
+
+
+
+# Open profile and pasted the commands
+sudo vim .profile
+ 
+source $HOME/.kube/kubecom.sh
+```
+
+
+
+### Create pod
+
+```
+kubectl run firstpod --image=coolgourav147/nginx-custom
+```
+
+### check the list of pod
+
+```
+kubectl get pod
+
+kubectl get pods
+
+kubectl get po
+
+kubectl get rc
+
+# Note: By the help of get commands you can see the list of pods,namespace,etc.
+
+```
+
+
+
+### Now, Let’s check the details of the pods list.
+```
+kubectl get po -o wide
+```
+
+
+### Now, check the pod's details in yaml format.
+```
+kubectl get po -o yaml 
+```
+
+### Now, check the pod’s details in json format.
+```
+kubectl get po -o json
+```
+
+
+### Explain the pods details.
+
+```
+
+kubectl explain pods
+# KIND:       Pod
+# VERSION:    v1
+```
+
+### Describe the pod details. 
+```
+kubectl describe pod firstpod
+```
+
+### Watch the pod's details.
+```
+kubectl get pod -w
+```
+
+### Delete the container 
+
+```
+sudo docker container ls
+
+sudo docker container rm -f a77ad096e319
+
+```
+
+### Delete the pods
+
+```
+kubectl delete pod firstpod
+
+```
+
+### Assign the label in pods
+```
+kubectl label pod firstpod env=testing
+```
+
+### Now, Check the label in pods.
+
+```
+kubectl describe pod firstpod 
+
+#Name:             firstpod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.39.100
+Start Time:       Fri, 19 Jan 2024 04:59:55 +0530
+Labels:           env=testing
+                  run=firstpod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.15
+IPs:
+  IP:  10.244.0.15
+
+```
+
+### Set the label prod of pods.
+
+```
+kubectl label --overwrite pod firstpod env=prod
+
+# Name:             firstpod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.39.100
+Start Time:       Fri, 19 Jan 2024 04:59:55 +0530
+Labels:           env=prod
+                  run=firstpod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.15
+
+```
+
+
+### Delete the labels of pods.
+
+```
+kubectl label pod --all status=rahul
+
+```
+
+### Check the status of labels.
+
+```
+kubectl describe pod firstpod 
+
+```
+
+### Now, Check the labels of all pods.
+
+```
+kubectl get pods --show-labels
+
+```
+
+### Delete the all pods
+
+```
+kubectl delete pods --all
+
+```
+
+
+
+
+
+
+
+
