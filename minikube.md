@@ -132,13 +132,13 @@ source $HOME/.kube/kubecom.sh
 
 
 
-### Create pod
+### Create pod.
 
 ```
 kubectl run firstpod --image=coolgourav147/nginx-custom
 ```
 
-### check the list of pod
+### check the list of pod.
 
 ```
 kubectl get pod
@@ -150,7 +150,6 @@ kubectl get po
 kubectl get rc
 
 # Note: By the help of get commands you can see the list of pods,namespace,etc.
-
 ```
 
 
@@ -191,7 +190,7 @@ kubectl describe pod firstpod
 kubectl get pod -w
 ```
 
-### Delete the container 
+### Delete the container. 
 
 ```
 sudo docker container ls
@@ -200,14 +199,13 @@ sudo docker container rm -f a77ad096e319
 
 ```
 
-### Delete the pods
+### Delete the pods.
 
 ```
 kubectl delete pod firstpod
-
 ```
 
-### Assign the label in pods
+### Assign the label in pods.
 ```
 kubectl label pod firstpod env=testing
 ```
@@ -257,29 +255,65 @@ IP:               10.244.0.15
 
 ```
 kubectl label pod --all status=rahul
-
 ```
 
 ### Check the status of labels.
 
 ```
 kubectl describe pod firstpod 
-
 ```
 
 ### Now, Check the labels of all pods.
 
 ```
 kubectl get pods --show-labels
-
 ```
 
 ### Delete the all pods
 
 ```
 kubectl delete pods --all
+```
+
+
+
+## Create First YAML for Kubernetes Resource, kubectl create, kubectl apply.
+
 
 ```
+# Create the yaml file.
+
+# Vim frirstpod.yaml
+
+apiVersion: v1
+kind: Pod
+
+
+metadata:
+  name: myfristpod
+  labels: 
+    env: prod
+
+
+spec:
+  containers:
+    - name: rahul
+      image: coolgourav147/nginx-custom
+```
+
+
+```
+# Now, Create the pod
+ kubectl create -f first-pod.yaml
+
+# Now, check the pod list.
+kubectl get pods
+
+NAME         READY   STATUS    RESTARTS   AGE
+myfristpod   1/1     Running   0          55s
+```
+
+
 
 
 
